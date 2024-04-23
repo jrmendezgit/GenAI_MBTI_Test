@@ -1,4 +1,4 @@
-name: JorCIv2
+name: AICI
 
 on:
   push:
