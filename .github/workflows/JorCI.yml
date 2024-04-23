@@ -1,4 +1,4 @@
-name: CI
+name: JorCI
 on:
   push:
     branches: main
