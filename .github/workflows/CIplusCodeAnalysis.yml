@@ -49,3 +49,19 @@ jobs:
             #create_baseline_from: "standard"
             debug: 0
             fail_build: false
+
+# This step will import flaws from the step above
+  import-pipeline-flaws:
+    needs: pipeline_scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: get flaw file
+        uses: actions/download-artifact@v3
+        with:
+          name: Veracode Pipeline-Scan Results
+          path: /tmp
+
+      - name: import flaws as issues
+        uses: veracode/veracode-flaws-to-issues@v2.2.24
+        with:
+          scan-results-json: '/tmp/filtered_results.json'
